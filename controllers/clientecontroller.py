@@ -8,11 +8,30 @@ def Incluir(cliente):
     cliente.nome, cliente.idade, cliente.profissao).rowcount
     db.cnxn.commit()
 
+def Alterar(cliente):
+    print("alterando...")
+    count = db.cursor.execute("""
+    UPDATE Cliente
+    SET cliNome = ?, cliIdade = ?, cliProfissao = ?
+    WHERE id = ?
+    """,
+    cliente.nome, cliente.idade, cliente.profissao, cliente.id).rowcount
+    db.cnxn.commit()
+
 def Excluir(id):
     count = db.cursor.execute("""
     DELETE FROM Cliente WHERE id = ?""",
     id).rowcount
     db.cnxn.commit()
+
+def selecionarById(id):
+    db.cursor.execute("SELECT * FROM Cliente WHERE id = ?", id)
+    costumerlist = []
+
+    for row in db.cursor.fetchall():
+        costumerlist.append(cliente.Cliente(row[0], row[1], row[2], row[3]))
+    
+    return costumerlist[0]
 
 def selecionartodos():
     db.cursor.execute("SELECT * FROM Cliente")
