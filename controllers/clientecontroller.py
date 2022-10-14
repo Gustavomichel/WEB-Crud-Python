@@ -1,4 +1,5 @@
 import services.database as db
+import models.cliente as cliente
 
 def Incluir(cliente):
     count = db.cursor.execute("""
@@ -6,3 +7,12 @@ def Incluir(cliente):
     VALUES (?,?,?)""",
     cliente.nome, cliente.idade, cliente.profissao).rowcount
     db.cnxn.commit()
+
+def selecionartodos():
+    db.cursor.execute("SELECT * FROM Cliente")
+    costumerlist = []
+
+    for row in db.cursor.fetchall():
+        costumerlist.append(cliente.Cliente(row[0], row[1], row[2], row[3]))
+    
+    return costumerlist
