@@ -2,7 +2,7 @@ import Database.database as db
 import models.cliente as cliente
 import logging
 
-logging.basicConfig(filename="Docs\app.log")
+logging.basicConfig(filename="Docs\app.log", format="% (asctime)s - %(levelname)s - %(message)s")
 
 def Incluir(cliente):
     print("Incluindo...")

@@ -1,7 +1,7 @@
 import logging
 import pyodbc 
 
-logging.basicConfig(filename="Docs\app.log")
+logging.basicConfig(filename="Docs\app.log", format="% (asctime)s - %(levelname)s - %(message)s")
 
 """
 DATABASE CONNECTION
