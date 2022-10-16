@@ -2,7 +2,7 @@ import Database.database as db
 import models.cliente as cliente
 import logging
 
-logging.basicConfig(filename="Docs\app.log", format="% (asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig( level=logging.ERROR ,filename="Docs\app.log", format="% (asctime)s - %(levelname)s - %(message)s")
 
 def Incluir(cliente):
     print("Incluindo...")
@@ -12,8 +12,8 @@ def Incluir(cliente):
         VALUES (?,?,?)""",
         cliente.nome, cliente.idade, cliente.profissao).rowcount
         db.cnxn.commit()
-    except:
-        logging.exception()
+    except Exception:
+        logging.exception(Exception)
 
 def Alterar(cliente):
     print("alterando...")
@@ -25,8 +25,8 @@ def Alterar(cliente):
         """,
         cliente.nome, cliente.idade, cliente.profissao, cliente.id).rowcount
         db.cnxn.commit()
-    except:
-        logging.exception()
+    except Exception:
+        logging.exception(Exception)
 
 def Excluir(id):
     print("Excluindo...")
@@ -35,8 +35,8 @@ def Excluir(id):
         DELETE FROM Cliente WHERE id = ?""",
         id).rowcount
         db.cnxn.commit()
-    except:
-        logging.exception()
+    except Exception:
+        logging.exception(Exception)
 
 def selecionarById(id):
     print("GetID...")
@@ -48,8 +48,8 @@ def selecionarById(id):
             costumerlist.append(cliente.Cliente(row[0], row[1], row[2], row[3]))
         
         return costumerlist[0]
-    except:
-        logging.exception()
+    except Exception:
+        logging.exception(Exception)
 
 def selecionartodos():
     print("GetAll...")
@@ -61,5 +61,5 @@ def selecionartodos():
             costumerlist.append(cliente.Cliente(row[0], row[1], row[2], row[3]))
         
         return costumerlist
-    except:
-        logging.exception()
+    except Exception:
+        logging.exception(Exception)
